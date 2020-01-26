@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './style.scss';
 
-const HamburgerMenu = () => {
-    return (
-        <div className="hamburger-icon">
-            <span className="line"></span>
-        </div>
-    );
+class HamburgerMenu extends Component {
+    state = { isOpen: false }
+
+    toggleMenu = () => {
+        const { isOpen } = this.state;
+        this.setState({ isOpen: !isOpen })
+    }
+
+    render(){
+        return (
+            <button onClick={this.toggleMenu} className="hamburger-icon">
+                <span className="line"></span>
+            </button>
+        );
+    }
 }
 export default HamburgerMenu;

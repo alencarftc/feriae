@@ -28,11 +28,11 @@ const Layout = ({ children }) => {
       <Navbar siteTitle={data.site.siteMetadata.title} links={links}   />
       <div className="content-layout">
         <main className="content-area">{children}</main>
-        {/* <footer>
-          Made by &nbsp;
-          <a href="https://www.github.com/alencarfff">Felipe Alencar</a>
-        </footer> */}
       </div>
+      <footer className="footer">
+        Made by &nbsp;
+        <a href="https://www.github.com/alencarfff">Felipe Alencar</a>
+      </footer>
     </>
   )
 }
