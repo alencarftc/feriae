@@ -1,16 +1,9 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
+import React from "react";
+import PropTypes from "prop-types";
+import { useStaticQuery, graphql } from "gatsby";
 
-import React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
-
-import Header from "../header/header"
-import "./layout.scss"
+import Navbar from '../navbar/index';
+import "./layout.scss";
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -23,19 +16,20 @@ const Layout = ({ children }) => {
     }
   `)
 
+  const links = [
+    { id: 1, title: "Início", href: "/" },
+    { id: 2, title: "Amanhã é feriado?", href: "/tomorrow" },
+    { id: 3, title: "Próximos feriados", href: "/next-holidays" },
+    { id: 4, title: "Sobre", href: "/about" },            
+  ];
+
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 1300,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
+      <Navbar siteTitle={data.site.siteMetadata.title} links={links}   />
+      <div className="content-layout">
+        <main className="content-area">{children}</main>
         {/* <footer>
-          Made by &nbsp;  
+          Made by &nbsp;
           <a href="https://www.github.com/alencarfff">Felipe Alencar</a>
         </footer> */}
       </div>

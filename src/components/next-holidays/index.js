@@ -3,11 +3,13 @@ import api from '../../services/api';
 import './style.scss'
 
 export default class NextHolidays extends Component {
-    state = {
-        isHoliday: false,
-        holidays: []
-    }
+    state = { holidays: [] }
+
     async componentDidMount(){
+        const { holidays } = this.state;
+
+        if( holidays.length > 0 ) return;
+
         const response = await api.get("NextPublicHolidays/BR");
         const { data } = response;
         this.setState({ holidays: data })
@@ -17,7 +19,11 @@ export default class NextHolidays extends Component {
 
         if( holidays.length === 0 ) return <></>;
 
-        return (<ul>{holidays.map(this.renderRow)}</ul>);
+        return (
+            <div className="next-holidays">
+                <ul>{holidays.map(this.renderRow)}</ul>
+            </div>
+        );
     }
 
     renderRow = (holiday) => (

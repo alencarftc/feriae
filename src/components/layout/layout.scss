@@ -1,3 +1,5 @@
+@import '../../style.scss';
+
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -619,4 +621,14 @@ pre tt:after {
   html {
     font-size: 100%;
   }
+}
+
+.content-layout {
+  margin: 0 auto;
+  max-width: $max-page-width;
+  padding: 2.25rem 2.0875rem .5rem;
+}
+
+.content-area {
+  min-height: $content-area-height;
 }

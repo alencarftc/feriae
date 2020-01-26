@@ -1,4 +1,23 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    outline: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 161.8%;
+}
 
 li {
     list-style: none;
 }
+
+a {
+    text-decoration: none;
+}
+
+$navbar-height: 80px;
+$footer-height: 50px;
+
+$content-area-height: calc(100vh - #{$navbar-height} - #{$footer-height});
+
+$max-page-width: 1100px;

@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Hoje é Feriado?`,
+    title: `feriae.`,
     description: `Discover the nearests holidays at your city and plan better yourself.`,
     author: `Felipe Alencar`,
   },
@@ -21,8 +21,8 @@ module.exports = {
         name: `Is Holiday Today?`,
         short_name: `holiday-today`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#ed143d`,
+        theme_color: `#ed143d`,
         display: `minimal-ui`,
         icon: `src/images/calendar-logo.png`, // This path is relative to the root of the site.
       },

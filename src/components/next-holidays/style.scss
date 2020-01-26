@@ -1,7 +1,46 @@
-h3 {
-    margin: 0;
-}
-p {
-    color: #999;
-}
+.next-holidays {
 
+    h3 {
+        margin: 0;
+    }
+    p {
+        color: #999;
+    }
+    
+    ul { 
+        margin: 0;
+    
+        li {
+            padding: 10px 20px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            background: #f5f5f5;
+            font-family: 'Roboto', sans-serif;
+            transition: border-left .25s ease-out;
+            position: relative;
+
+            &:hover {
+                border-left: 25px solid crimson;
+                
+                &:before {
+                    left: -12px;
+                    opacity: .8;
+                    z-index: 1;
+                }
+            }
+
+            &:before {
+                content: "ver mais";
+                position: absolute;
+                top: 50%;
+                left: 0;
+                font-size: 16px;
+                color: #f5f5f5;
+                transform: translate(-50%, -50%) rotate(-90deg);
+                opacity: 0;
+                transition: left .25s, opacity .25s;
+                z-index: -1;
+            }
+        }
+    }
+}

@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import api from '../services/api';
 import './is-holiday.scss'
 import Image from '../components/image'
+import { Link } from 'gatsby';
 
 export default class IsHoliday extends Component {
-    state = { isHoliday: false, holiday: {} }
+    state = { holiday: {} }
 
     async componentDidMount(){
         const response = await api.get("NextPublicHolidays/BR");
         const { data } = response;
-        console.log(data)
         this.setState({ holiday: data[0] })
     }
 
@@ -18,35 +18,54 @@ export default class IsHoliday extends Component {
 
         if( !holiday || holiday === {}) return <></>;
 
-        if( holiday.date === this.formatDateToUS( new Date() )){
-            return this.todayIsAHoliday( holiday );
+        if( holiday.date === this.formatDateToUS( this.getTomorrowDate() ) ){
+            return this.tomorrowIsAHoliday( holiday );
         }
         else {
-            return this.todayIsNotAHoliday( holiday );
+            return this.tomorrowIsNotAHoliday( holiday );
         }
+    }
+
+    getTomorrowDate(){
+        var date = new Date();
+
+        date.setDate(date.getDate() + 1);
+
+        return date;
     }
 
     formatDateToUS = (date) =>`${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
 
-    todayIsAHoliday = (holiday) => {
+    tomorrowIsAHoliday = (holiday) => {
         return (
             <div className="is-holiday-today text-center">
-                <h2>Obaaa!!! Hoje é <strong>{holiday.name}</strong></h2>
+                <h2>Oba!!! Amanhã é <strong>{holiday.name}!</strong></h2>
                 <div className="image-container happy-calendar">
                     <Image filename={"funny-calendar.png"} />
                 </div>
-                <p>Aproveite sua folga!</p>
+                <p>Aproveite seu dia!</p>
             </div>
         )
     }
-    todayIsNotAHoliday = (holiday) => {
+    tomorrowIsNotAHoliday = (holiday) => {
+        const cursiveDate = this.formatDateToCursive(holiday.date);
+
         return (
             <div className="is-holiday-today text-center">
-                <h2>Aaah não... Hoje não é feriado.</h2>
+                <h2>Amanhã não é feriado.</h2>
+                
+                { cursiveDate && 
+                    <p> 
+                        O próximo feriado é <b>{holiday.localName}</b>, 
+                        dia <b>{cursiveDate}</b>.
+                    </p>
+                }
                 <div className="image-container">
                     <Image filename={"sad-calendar.png"} />
                 </div>
-                <p>O próximo feriado é somente dia {this.formatDateToCursive(holiday.date)}.</p>
+                <button>
+                    <Link to="/next-holidays">Conferir próximos feriados</Link>
+                </button>
             </div>
         )
     }
