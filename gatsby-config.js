@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Is Holiday Today?`,
+    title: `Hoje é Feriado?`,
     description: `Discover the nearests holidays at your city and plan better yourself.`,
     author: `Felipe Alencar`,
   },

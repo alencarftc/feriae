@@ -6,9 +6,24 @@ import './header.scss';
 
 const Header = ({ siteTitle }) => (
   <header className="header">
-    <h1 style={{ textAlign: "center" }}>
-      <Link className="link" to="/">{siteTitle}</Link>
-    </h1>
+    <div className="header-inner">
+      <h1>
+        <Link className="link" to="/">{siteTitle}</Link>
+      </h1>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Início</Link>
+          </li>
+          <li>
+            <Link to="/next-holidays">Próximos feriados</Link>
+          </li>
+          <li>
+            <Link to="/about">Sobre</Link>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </header>
 )
 
