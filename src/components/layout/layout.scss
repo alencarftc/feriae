@@ -626,17 +626,18 @@ pre tt:after {
 .content-layout {
   margin: 0 auto;
   max-width: $max-page-width;
-  padding: 2.25rem 2.0875rem .45rem;
+  padding: 2.25rem 2.0875rem 1.45rem;
 }
 
 .content-area {
   min-height: $content-area-height;
 }
 .footer {
-  border-top: 1px solid darkseagreen;
+  max-height: $footer-height;
+  border: none;
   text-align: center;
   padding: 4.5px 0;
-  background: seagreen;
+  background: #454545;
   color: #eee;
 
   a {

@@ -1,46 +1,77 @@
 .next-holidays {
 
+    h2 {
+        position: relative;
+        margin-left: 20px;
+
+        &:before {
+            content: "";
+            width: 7.5px;
+            height: 7.5px;
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: crimson;
+            border-radius: 100%;
+        }
+    }
+
     h3 {
         margin: 0;
+        font-size: 1.2em;
     }
+
     p {
-        color: #999;
+        color: #757575;
     }
     
     ul { 
         margin: 0;
     
         li {
-            padding: 10px 20px;
-            border: 1px solid #ccc;
+            padding: 17.5px 20px;
+            margin: 0;
             cursor: pointer;
-            background: #f5f5f5;
             font-family: 'Roboto', sans-serif;
-            transition: border-left .25s ease-out;
+            border-left: 0 solid crimson;
+            transition: border-left .5s ease-in-out;
             position: relative;
+            border-bottom: 1px solid #e1e1e1;
 
-            &:hover {
-                border-left: 25px solid crimson;
-                
-                &:before {
-                    left: -12px;
-                    opacity: .8;
-                    z-index: 1;
-                }
+            &:nth-child(2n + 2){ background: lighten(crimson, 50) }
+
+            &:last-child {
+                border-bottom: none;
             }
 
             &:before {
                 content: "ver mais";
                 position: absolute;
                 top: 50%;
-                left: 0;
                 font-size: 16px;
-                color: #f5f5f5;
-                transform: translate(-50%, -50%) rotate(-90deg);
+                left: 0;
+                color: #fafafa;
+                transform: translate(0, -50%) rotate(-90deg);
                 opacity: 0;
-                transition: left .25s, opacity .25s;
+                transition: left .25s, opacity .5s, z-index .5s;
                 z-index: -1;
             }
+
+            &:hover {
+                border-left: 25px solid crimson;
+                
+                &:before {
+                    left: -42px;
+                    opacity: .8;
+                    z-index: 1;
+                }
+            }
         }
+    }
+
+    hr { 
+        background: #eee;
+        margin: 0; 
     }
 }

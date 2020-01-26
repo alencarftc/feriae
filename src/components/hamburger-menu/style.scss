@@ -14,7 +14,7 @@
     box-sizing: content-box;
     overflow: hidden;
     transition: box-shadow .25s ease-in-out;
-    
+
     &:hover {
         box-shadow: 1.5px 1.5px 7.5px rgba(0, 0, 0, .5);
     }

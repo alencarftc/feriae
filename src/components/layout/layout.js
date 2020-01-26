@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
+import HamburgerMenu from '../hamburger-menu/index';
 
 import Navbar from '../navbar/index';
 import "./layout.scss";
@@ -29,6 +30,7 @@ const Layout = ({ children }) => {
       <div className="content-layout">
         <main className="content-area">{children}</main>
       </div>
+      <HamburgerMenu></HamburgerMenu>
       <footer className="footer">
         Made by &nbsp;
         <a href="https://www.github.com/alencarfff">Felipe Alencar</a>

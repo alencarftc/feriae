@@ -21,16 +21,21 @@ export default class NextHolidays extends Component {
 
         return (
             <div className="next-holidays">
-                <ul>{holidays.map(this.renderRow)}</ul>
+                <h2>Próximos feriados</h2>
+                <div>
+                    <ul>{holidays.map(this.renderRow)}</ul>
+                </div>
             </div>
         );
     }
 
     renderRow = (holiday) => (
-            <li>
-                <h3>{this.formatDateToCursive(holiday.date)}</h3>
-                <p>{holiday.localName}</p>
-            </li>        
+            <>
+                <li>
+                    <h3>{this.formatDateToCursive(holiday.date)}</h3>
+                    <p>{holiday.localName}</p>
+                </li>      
+            </>
         );
 
     formatDateToCursive = (date) => {
