@@ -7,7 +7,7 @@ const About = () => {
         <Layout>
             <SEO title="About" />
             <div>
-                aqui fica oq diabos é esse site
+                aqui fica sobre oq é esse site
             </div>
         </Layout>
     )
