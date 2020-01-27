@@ -1,30 +1,44 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'gatsby';
-import PropTypes from 'prop-types';
+import HamburgerMenu from "../hamburger-menu/index";
 import "./style.scss";
 
-const Navbar = ({siteTitle, links}) => {
-    return (
-        <header className="navbar">
-            <nav className="navbar-inner">
-                <h1><Link className="link" to="/">{siteTitle}</Link></h1>
-                
-                <ul className="link-list">
-                    {links.map(link => (<li key={link.id}><Link to={link.href}>{link.title}</Link></li>))}
-                </ul>
-            </nav>
-        </header>
-    );    
-};
+class Navbar extends Component {
+    state = { 
+        isMenuOpen: false,
+        siteTitle: "",
+        links: [],
+    }
+    
+    componentDidMount(){
+        const { siteTitle, links } = this.props.props;
 
-Navbar.propTypes = {
-    siteTitle: PropTypes.string, 
-    links: PropTypes.arrayOf(PropTypes.object)
-};
+        this.setState({ siteTitle, links })
+    }
 
-Navbar.defaultProps = {
-    siteTitle: "",
-    links: []
+    callme ($event) {
+        //appear and hide menu
+    }
+
+    render() {
+        const { siteTitle, links } = this.state;
+
+        return (
+            <header className="navbar">
+                <nav className="navbar-inner">
+                    <h1><Link className="link" to="/">{siteTitle}</Link></h1>
+                    
+                    {links && <ul className="link-list">
+                        {links.map(link => (<li key={link.id}><Link to={link.href}>{link.title}</Link></li>))}
+                    </ul>}
+
+                    <button style={{ width: 0, height: 0, border: 0, background: 'none' }} onClick={this.callme}>
+                        <HamburgerMenu></HamburgerMenu>
+                    </button>
+                </nav>
+            </header>
+        )
+    } 
 };
 
 export default Navbar;
