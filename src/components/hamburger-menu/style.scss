@@ -22,10 +22,10 @@
     .line {
         background: darken($color: crimson, $amount: 7.5);
         transform: translate(-50%, -50%);           
-        top: 50%;    
+        top: calc(50% + 7.5px);    
         left: 50%;
         transition: width .5s, background .5s;
-        
+
         &::before,
         &::after {
             content: "";
@@ -39,7 +39,7 @@
             background: crimson;
         }
         &::after { 
-            bottom: -7.5px;
+            bottom: 15px;
             background: darken($color: crimson, $amount: 15);
         }
     }
@@ -52,5 +52,27 @@
         transition: width .5s;
         border-radius: 20px;
         width: 25px;
+    }
+
+}
+.open {
+    
+    z-index: 10000;
+    .line {
+        background: #fff;
+
+
+        &::after {
+            transform: translate(-50%, 0) rotate(45deg);
+        }    
+        &::before {
+            transform: translate(-50%, 0) rotate(-45deg);
+        }
+
+        &::before,
+        &::after {
+            top: -7.5px;
+            background: #a1a1a1;
+        }
     }
 }

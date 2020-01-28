@@ -4,11 +4,7 @@ import HamburgerMenu from "../hamburger-menu/index";
 import "./style.scss";
 
 class Navbar extends Component {
-    state = { 
-        isMenuOpen: false,
-        siteTitle: "",
-        links: [],
-    }
+    state = { isMenuOpen: false, siteTitle: "", links: [] }
     
     componentDidMount(){
         const { siteTitle, links } = this.props.props;
@@ -16,29 +12,34 @@ class Navbar extends Component {
         this.setState({ siteTitle, links })
     }
 
-    callme ($event) {
-        //appear and hide menu
+    toggleMenu = () => {
+        const { isMenuOpen } = this.state;
+        this.setState({ isMenuOpen: !isMenuOpen });
+    }
+
+    closeMenu = () => {
+        this.setState({ isMenuOpen: false })
     }
 
     render() {
         const { siteTitle, links } = this.state;
-
         return (
             <header className="navbar">
                 <nav className="navbar-inner">
                     <h1><Link className="link" to="/">{siteTitle}</Link></h1>
                     
-                    {links && <ul className="link-list">
+                    <button onClick={this.toggleMenu}> 
+                        <HamburgerMenu isOpen={this.state.isMenuOpen} />
+                    </button>
+
+                    {this.state.isMenuOpen && <div className="overlay" onClick={this.closeMenu}></div>}
+                    {links && <ul className={this.state.isMenuOpen ? "link-list open" : "link-list"}>
                         {links.map(link => (<li key={link.id}><Link to={link.href}>{link.title}</Link></li>))}
                     </ul>}
-
-                    <button style={{ width: 0, height: 0, border: 0, background: 'none' }} onClick={this.callme}>
-                        <HamburgerMenu></HamburgerMenu>
-                    </button>
                 </nav>
             </header>
-        )
-    } 
+        );
+    }
 };
 
 export default Navbar;
