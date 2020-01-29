@@ -28,7 +28,7 @@ class Navbar extends Component {
                 <nav className="navbar-inner">
                     <h1><Link className="link" to="/">{siteTitle}</Link></h1>
                     
-                    <button onClick={this.toggleMenu}> 
+                    <button className="hamburger-wrapper" onClick={this.toggleMenu}> 
                         <HamburgerMenu isOpen={this.state.isMenuOpen} />
                     </button>
 
