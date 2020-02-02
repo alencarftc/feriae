@@ -15,6 +15,8 @@
     overflow: hidden;
     transition: box-shadow .25s ease-in-out;
 
+    @media screen and (min-width: 768px) { display: none }
+
     &:hover {
         box-shadow: 1.5px 1.5px 7.5px rgba(0, 0, 0, .5);
     }
