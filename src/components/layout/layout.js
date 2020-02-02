@@ -17,7 +17,6 @@ const Layout = ({ children }) => {
   `)
 
   const links = [
-    { id: 1, title: "Início", href: "/" },
     { id: 2, title: "Amanhã é feriado?", href: "/tomorrow" },
     { id: 3, title: "Próximos feriados", href: "/next-holidays" },
     { id: 4, title: "Sobre", href: "/about" },            
@@ -26,6 +25,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Navbar props={{ siteTitle: data.site.siteMetadata.title, links }} />
+
       <div className="content-layout">
         <main className="content-area">{children}</main>
       </div>

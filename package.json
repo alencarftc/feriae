@@ -1,9 +1,10 @@
 {
-  "name": "gatsby-starter-default",
-  "private": true,
+  "name": "feriae",
+  "private": false,
+  "homepage": "http://alencarfff.github.io/feriae",
   "description": "A simple starter to get up and developing quickly with Gatsby",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Felipe Alencar <alencar.dev@outlook.com>",
   "dependencies": {
     "axios": "^0.19.2",
     "gatsby": "^2.18.12",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "gatsby-plugin-sass": "^2.1.27",
+    "gh-pages": "^2.2.0",
     "node-sass": "^4.13.1",
     "prettier": "^1.19.1"
   },
@@ -35,6 +37,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "repository": {

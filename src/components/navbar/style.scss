@@ -30,29 +30,58 @@
             }
         }
         .overlay {
-            background: rgba(0,0,0,0.25);
+            background: rgba(0,0,0,0.35);
             width: 100vw;
             height: 100vh;
             position: fixed;
             top: 0;
             left: 0;
             z-index: 100;
+            transition: background .5s;
+            animation: show-overlay .5s;
+
+            @keyframes show-overlay {
+                0%{ background: rgba(0,0,0,0) }
+                100%{ background: rgba(0,0,0,.35) }
+            }
         }
         ul.open.link-list {
             display: flex;
             position: fixed;
             right: 0;
             top: 0;
-            padding-top: 25%;
             width: 250px;
             height: 100vh;
             background: #f5f5f5;
             flex-flow: column nowrap;
             z-index: 1000;
-            justify-content: flex-start;
+            justify-content: center;
+            animation: open-menu .5s;
+
+            @keyframes open-menu {
+                0% { right: -100% }
+                100% { right: 0 }
+            }
 
             li {
-                margin-bottom: 50px;
+                margin-bottom: 30px;
+                width: 80%;
+                padding: 5px 0;
+                border-radius: 100px;
+
+                &:first-child {
+                    color: crimson;
+
+                    &:hover {
+                        background: lighten(crimson, 47.5);
+                    }
+                }
+
+                &:hover {
+                    background: #edd;
+                    
+                    a { color: crimson }
+                }
             }
         }
         
@@ -73,9 +102,10 @@
                 text-align: center;
                 margin-bottom: 0;
                 background: transparent;
-                transition: transform .25s;
+                transition: transform .25s, background .25s;
                 transform: translateY(0);
                 font-size: .85em;
+                cursor: pointer;
                 
                 &:hover {
                     transform: translateY(-3px);
@@ -114,7 +144,4 @@ ul.link-list {
     @media screen and (min-width: 768px) {
         display: none;
     }
-}
-.open.hamburger-wrapper {
-
 }

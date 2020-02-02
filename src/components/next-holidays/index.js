@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import api from '../../services/api';
 import './style.scss';
+import Spinner from '../spinner/index';
 
 export default class NextHolidays extends Component {
     state = { 
@@ -28,23 +29,23 @@ export default class NextHolidays extends Component {
 
         const response = await api.get("NextPublicHolidays/BR");
 
-        this.setState({ holidays: response.data })
+        this.setState(() => ({ holidays: response.data }))
     }
     render() {
         const { holidays } = this.state;
 
-        if( holidays.length === 0 ) return <></>;
+        if( holidays.length === 0 ) return <Spinner></Spinner>;
 
         return (
             <div className="next-holidays">
-                <h2>Próximos feriados</h2>
+                <h2 className="title">Próximos feriados</h2>
                 <ul className="holiday-list">{holidays.map(this.renderRow)}</ul>
             </div>
         );
     }
 
     renderRow = (holiday) => (
-        <li>
+        <li key={holiday.date}>
             <h3>{this.formatDateToCursive(holiday.date)}</h3>
             <p>{holiday.localName}</p>
         </li>      

@@ -4,6 +4,7 @@ module.exports = {
     description: `Discover the nearests holidays at your city and plan better yourself.`,
     author: `Felipe Alencar`,
   },
+  pathPrefix: "/feriae",
   plugins: [
     `gatsby-plugin-react-helmet`,
     {

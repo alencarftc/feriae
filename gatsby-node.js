@@ -5,3 +5,11 @@
  */
 
 // You can delete this file if you're not using it
+exports.createPages = ({ actions }) => {
+    actions.createRedirect({
+        fromPath: `/`,
+        toPath: `/tomorrow`,
+        redirectInBrowser: true,
+        isPermanent: false,
+    })
+}

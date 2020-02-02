@@ -3,27 +3,84 @@ import api from '../services/api';
 import './is-holiday.scss'
 import Image from '../components/image'
 import { Link } from 'gatsby';
+import Spinner from './spinner/index';
 
 export default class IsHoliday extends Component {
     state = { holiday: {} }
 
+    constructor(props) {
+        super(props);
+
+        this.MONTHS = [
+            'Janeiro', 
+            'Fevereiro', 
+            'Março', 
+            'Maio', 
+            'Abril', 
+            'Junho', 
+            'Agosto', 
+            'Setembro', 
+            'Outubro', 
+            'Novembro', 
+            'Dezembro'
+        ];
+        this.WEEK_DAYS = [
+            'Quarta-feira', 
+            'Quinta-feira', 
+            'Sexta-feira', 
+            'Sábado',
+            'Domingo', 
+            'Segunda-feira', 
+            'Terça-feira', 
+        ];
+
+        this.response = {
+            isHoliday: {
+                title: (holiday) => `Oba!!! Amanhã é ${holiday.localName}`,
+                description: (holiday) => "Aproveite seu dia!",
+                image: "funny-calendar.png"
+            },
+            isNotAHoliday: {
+                title: (holiday) => "Ah.. Amanhã não é feriado.",
+                description: (holiday) => (<p>O próximo feriado é <b className="red">{holiday.localName}</b>, {this.formatDateToCursive(holiday.date)} </p>),
+                image: "sad-calendar.png"
+            }
+        };
+    }
+
     async componentDidMount(){
         const response = await api.get("NextPublicHolidays/BR");
         const { data } = response;
-        this.setState({ holiday: data[0] })
+        this.setState(() => ({ holiday: data[0] }))
+        window.isLoading = false;
+    }
+
+    isTomorrowAHoliday = (holiday) => {
+        return holiday.date === this.formatDateToUS( this.getTomorrowDate() ) ? "isHoliday" : "isNotAHoliday";
     }
 
     render() {
         const { holiday } = this.state;
 
-        if( !holiday || holiday === {}) return <></>;
+        if( !holiday || !holiday.date ) return <Spinner></Spinner>;
+        
+        const key = this.isTomorrowAHoliday(holiday);
+        const response = this.response[key];
 
-        if( holiday.date === this.formatDateToUS( this.getTomorrowDate() ) ){
-            return this.tomorrowIsAHoliday( holiday );
-        }
-        else {
-            return this.tomorrowIsNotAHoliday( holiday );
-        }
+        return (
+            <div className="is-holiday-today text-center">
+                <h2>{response.title(holiday)}</h2>
+                
+                {response.description(holiday)}
+
+                <div className="image-container">
+                    <Image filename={response.image} />
+                </div>
+                <Link to="/next-holidays">
+                    <button>Conferir próximos feriados</button>
+                </Link>
+            </div>
+        );
     }
 
     getTomorrowDate(){
@@ -37,50 +94,33 @@ export default class IsHoliday extends Component {
     formatDateToUS = (date) =>`${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
 
     tomorrowIsAHoliday = (holiday) => {
+        if( holiday ) return <></>;
+    
         return (
             <div className="is-holiday-today text-center">
-                <h2>Oba!!! Amanhã é <strong>{holiday.name}!</strong></h2>
+                <h2><strong>{holiday.name}!</strong></h2>
                 <div className="image-container happy-calendar">
-                    <Image filename={"funny-calendar.png"} />
+                    <Image filename={""} />
                 </div>
-                <p>Aproveite seu dia!</p>
             </div>
-        )
-    }
-    tomorrowIsNotAHoliday = (holiday) => {
-        const cursiveDate = this.formatDateToCursive(holiday.date);
-
-        return (
-            <div className="is-holiday-today text-center">
-                <h2>Amanhã não é feriado.</h2>
-                
-                { cursiveDate && 
-                    <p> 
-                        O próximo feriado é <b>{holiday.localName}</b>, 
-                        dia <b>{cursiveDate}</b>.
-                    </p>
-                }
-                <div className="image-container">
-                    <Image filename={"sad-calendar.png"} />
-                </div>
-                <button>
-                    <Link to="/next-holidays">Conferir próximos feriados</Link>
-                </button>
-            </div>
-        )
+        );
     }
 
     formatDateToCursive = (date) => {
-        if( !date ) return;
-
-        let months = ['Janeiro', 'Fevereiro', 'Março', 'Maio', 'Abril', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
         date = date.split('-');
-        return `${+date[2]} de ${months[+date[1] - 1]} de ${+date[0]}`
+        const dateObject = new Date(`${date[0]}, ${+date[1] - 1}, ${date[2]}`);
+        return (
+            <>
+                <b className="red">
+                    dia {dateObject.getDate()} de {this.MONTHS[dateObject.getMonth()]} de {dateObject.getFullYear()}
+                    &nbsp; 
+                </b> 
+                ({this.WEEK_DAYS[dateObject.getDay()]})
+            </>
+        );
     }
 
-    whatDayIsToday = (date) => {
-        let months = ['Janeiro', 'Fevereiro', 'Março', 'Maio', 'Abril', 'Junho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-        
-        return `${date.getDate()} de ${months[date.getMonth()]} de ${date.getFullYear()}`
+    whatDayIsToday = (date) => {       
+        return `${date.getDate()} de ${this.MONTHS[date.getMonth()]} de ${date.getFullYear()}`
     }
 };

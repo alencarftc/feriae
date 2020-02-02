@@ -256,6 +256,22 @@ h2 {
   font-size: 1.62671rem;
   line-height: 1.1;
 }
+.title {
+  position: relative;
+  margin-left: 20px;
+
+  &:before {
+      content: "";
+      width: 7.5px;
+      height: 7.5px;
+      position: absolute;
+      left: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: crimson;
+      border-radius: 100%;
+  }
+}
 h3 {
   margin-left: 0;
   margin-right: 0;
@@ -626,7 +642,7 @@ pre tt:after {
 .content-layout {
   margin: 0 auto;
   max-width: $max-page-width;
-  padding: 2.25rem 2.0875rem 1.45rem;
+  padding: 2rem 2.0875rem 1.45rem;
 }
 
 .content-area {
@@ -650,3 +666,4 @@ pre tt:after {
     &:hover { text-shadow: 0 0 1px #f1f1f1; }
   }
 }
+
