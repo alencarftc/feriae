@@ -25,13 +25,13 @@ export default class IsHoliday extends Component {
             'Dezembro'
         ];
         this.WEEK_DAYS = [
+            'Domingo', 
+            'Segunda-feira', 
+            'Terça-feira', 
             'Quarta-feira', 
             'Quinta-feira', 
             'Sexta-feira', 
             'Sábado',
-            'Domingo', 
-            'Segunda-feira', 
-            'Terça-feira', 
         ];
 
         this.response = {
@@ -108,7 +108,7 @@ export default class IsHoliday extends Component {
 
     formatDateToCursive = (date) => {
         date = date.split('-');
-        const dateObject = new Date(`${date[0]}, ${+date[1] - 1}, ${date[2]}`);
+        const dateObject = new Date(`${date[0]}, ${+date[1]}, ${date[2]}`);
         return (
             <>
                 <b className="red">

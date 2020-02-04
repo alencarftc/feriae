@@ -5,7 +5,7 @@ import NextHolidays from '../components/next-holidays'
 
 const NextHolidaysPage = () => (
     <Layout>
-        <SEO title="Next Holidays" />
+        <SEO title="Próximos Feriados" />
         <NextHolidays></NextHolidays>
     </Layout>
 );
