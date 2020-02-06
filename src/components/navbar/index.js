@@ -28,7 +28,7 @@ class Navbar extends Component {
                 <nav className="navbar-inner">
                     <h1><Link className="link" to="/">{siteTitle}</Link></h1>
                     
-                    <button 
+                    <div 
                         onClick={this.toggleMenu}
                         style={{
                             width: 0,
@@ -37,8 +37,8 @@ class Navbar extends Component {
                             height: 0
                         }}> 
                         <HamburgerMenu isOpen={this.state.isMenuOpen} />
-                    </button>
-
+                    </div>
+                    
                     {this.state.isMenuOpen && <div className="overlay" onClick={this.closeMenu}></div>}
                     {links && <ul className={this.state.isMenuOpen ? "link-list open" : "link-list"}>
                         {links.map(link => (<li key={link.id}><Link to={link.href}>{link.title}</Link></li>))}

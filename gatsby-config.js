@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `feriae.`,
-    description: `Discover the nearests holidays at your city and plan better yourself.`,
+    description: `Descubra os próximos feriados na sua cidade e planeje-se melhor.`,
     author: `Felipe Alencar`,
   },
   pathPrefix: "/feriae",
@@ -19,8 +19,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Is Holiday Today?`,
-        short_name: `holiday-today`,
+        name: `Feriae`,
+        short_name: `Feriae`,
         start_url: `/`,
         background_color: `#ed143d`,
         theme_color: `#ed143d`,
