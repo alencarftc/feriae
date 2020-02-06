@@ -1,7 +1,8 @@
+// Discover the nearests holidays at your city and plan better yourself.
 module.exports = {
   siteMetadata: {
     title: `feriae.`,
-    description: `Descubra os próximos feriados na sua cidade e planeje-se melhor.`,
+    description: `Descubra os feriados mais próximos de você e planeje-se melhor!`,
     author: `Felipe Alencar`,
   },
   pathPrefix: "/feriae",
