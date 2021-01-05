@@ -6,7 +6,7 @@
   "version": "0.1.0",
   "author": "Felipe Alencar <alencar.dev@outlook.com>",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "gatsby": "^2.18.12",
     "gatsby-image": "^2.2.34",
     "gatsby-plugin-manifest": "^2.2.31",
